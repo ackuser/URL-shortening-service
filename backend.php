@@ -14,16 +14,16 @@ if (isset($_POST['url']) && !filter_var($_POST['url'], FILTER_VALIDATE_URL) === 
 
   $url = $_POST['url'];
   $short = 'http://short.ener/'. substr(sha1($url),0,6);
-  echo "URL " . $url . "\n";
+  //echo "URL " . $url . "\n";
   $ipaddress = $_SERVER['REMOTE_ADDR'];
   $datetime = date('Y-m-d H:i:s');
   $sql = "INSERT INTO `URLShortServices`(`url`, `short`, `ipaddress`, `datetime`)
   VALUES ('".$url."', '".$short."', '".$ipaddress."', '".$datetime."')";
 
   if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
+    //echo "New record created successfully";
   } else {
-    echo "Error: " . $sql . "\n" . $conn->error;
+    //echo "Error: " . $sql . "\n" . $conn->error;
   }
 
   $sql = "SELECT * FROM URLShortServices";
@@ -35,15 +35,17 @@ if (isset($_POST['url']) && !filter_var($_POST['url'], FILTER_VALIDATE_URL) === 
     while($row = $result->fetch_assoc()) {
       array_push($return_arr,$row);
     }
-      print "<pre>";
+      /*print "<pre>";
       echo json_encode($return_arr);
-      print "</pre>";
+      print "</pre>";*/
   } else {
-    echo "0 results";
+    //echo "0 results";
   }
 
 
   $conn->close();
+  header('Content-type:application/json;');
+  echo json_encode($return_arr);
 } else {
   echo("$url is not a valid URL");
 }

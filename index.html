@@ -17,11 +17,20 @@
     if(/^([a-z]([a-z]|\d|\+|-|\.)*):(\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?((\[(|(v[\da-f]{1,}\.(([a-z]|\d|-|\.|_|~)|[!\$&'\(\)\*\+,;=]|:)+))\])|((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=])*)(:\d*)?)(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*|(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)|((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)|((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)){0})(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(url)) {
       alert("valid url");
       alert(url);
-      $.post("backend.php", { url:url } );
-      $("#testResult").show();
+      $.post("backend.php", { url:url }, function(data) {
+        alert(data);
+        $("#testResult").show();
+        $.each(data, function(index, element) {
+          $('#long').append($('<div>', {
+            text: element.url
+          }));
+          $('#short').append($('<div>', {
+            text: element.short
+          }));
+        });
+      });
     } else {
       alert("invalid url");
-
     }
   }
 
@@ -32,14 +41,14 @@
   <div class="container">
     <h2>URL Shortening Service</h2>
     <div class="form-group">
-        <label for="url">URL:</label>
-        <input id='url' type="url" name="url" pattern="https?://.+" class="form-control" placeholder="Enter URL">
-        <button type="submit"  value='Test' onclick='callListener()' class="btn btn-default">Submit</button>
+      <label for="url">URL:</label>
+      <input id='url' type="url" name="url" pattern="https?://.+" class="form-control" placeholder="Enter URL">
+      <button type="submit"  value='Test' onclick='callListener()' class="btn btn-default">Submit</button>
     </div>
   </div>
   <div id='testResult'>
-    LONG URL : <span id='resultCode'></span><br />
-    SHORT URL : <span  id='resultDescription'></span>
+    LONG URL : <span id='long'></span><br />
+    SHORT URL : <span  id='short'></span>
   </div>
   <script type="text/javascript">
   </script>

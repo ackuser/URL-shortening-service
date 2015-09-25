@@ -11,3 +11,21 @@ You must demonstrate the following;
 4. Ability to create simple but effective user interfaces (use of front-end frameworks are acceptable).
 5. Show us DRY, extensible development. (http://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
 You must avoid using an open source PHP framework, but plugin and open source libraries are acceptable.
+
+
+
+TEST BACKEND
+
+$ curl 'http://localhost/URL-shortening-service/backend.php' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' --data 'url=https://holaasdaswsdsad.com'
+
+NOTE: use a different url each time you are testing backend
+
+
+###Next release, suggestions:
+
+* PHPUnit
+* Composer
+* Pagination
+* Plugin
+* More PSR standards oriented
+* Parser errors
