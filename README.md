@@ -12,16 +12,70 @@ You must demonstrate the following;
 5. Show us DRY, extensible development. (http://en.wikipedia.org/wiki/Don%27t_repeat_yourself)
 You must avoid using an open source PHP framework, but plugin and open source libraries are acceptable.
 
+## Prerequisite
+
+I suppose we already have a basic LAMP environment installed
+
+Clone the project under /var/www
+
+```
+$ cd /var/www
+```
+```
+$ git clone git@github.com:ackuser/URL-shortening-service.git
+```
+
+Restart MySQL and Apache
+
+```
+$ /etc/init.d/mysql restart
+```
+```
+$ apache2ctl restart
+```
+
+## Configure DB
+
+Restore the db from terminal, example
+
+```
+$ cd DumpURLShortServices
+```
+```
+$ mysql -u root -p URLss < /URLss_URLShortServices.sql
+```
+
+Check the details of the connection in backend.php and modify it putting your own password if necessary
+
+```
+$servername = "localhost";
+$username = "root";
+$password = '';
+$dbname = "URLss";
+```
+## Usage
+
+Check it online
+
+go to http://localhost/URL-shortening-service/
+
+And you insert a long url that you want to make shorter
+
+NOTE: For simplicity I didn't parse some errors we can get back, neither I put the configuration of the domain nor Database with more than one table (not in the requirements)
 
 
-TEST BACKEND
+## Testing only backend
 
+Post request with data
+
+```
 $ curl 'http://localhost/URL-shortening-service/backend.php' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' --data 'url=https://holaasdaswsdsad.com'
+```
 
-NOTE: use a different url each time you are testing backend
+NOTE: use a different curl each time you are testing only backend.
 
 
-###Next release, suggestions:
+### Next release, suggestions:
 
 * PHPUnit
 * Composer
@@ -29,3 +83,5 @@ NOTE: use a different url each time you are testing backend
 * Plugin
 * More PSR standards oriented
 * Parser errors
+* Apache configuration for a LAMP environment
+* Apache Virtual Host configuration for our domain

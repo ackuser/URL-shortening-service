@@ -2,7 +2,7 @@
 if (isset($_POST['url']) && !filter_var($_POST['url'], FILTER_VALIDATE_URL) === false) {
   $servername = "localhost";
   $username = "root";
-  $password = 'Pa$$w0rd';
+  $password = '';
   $dbname = "URLss";
 
   // Create connection
