@@ -14,11 +14,10 @@ if (isset($_POST['url']) && !filter_var($_POST['url'], FILTER_VALIDATE_URL) === 
   }
 
   $url = $_POST['url'];
-  //$short
+  $short = 'http://shortener/'. substr(sha1($url),0,6);
 
   $ipaddress = $_SERVER['REMOTE_ADDR'];
-  $datetime = date('Y-m-d H:i:s');
-
+  $datetime = date('Y-m-d H:i:s')
   $sql = "INSERT INTO `URLShortServices`(`url`, `short`, `ipaddress`, `datetime`)
   VALUES ('".$sortcode."', '".$short."', '".$ipaddress."', '".$datetime."')";
 
