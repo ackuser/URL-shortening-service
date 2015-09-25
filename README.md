@@ -57,7 +57,7 @@ $dbname = "URLss";
 
 Check it online
 
-go to [](http://localhost/URL-shortening-service/)
+go to (http://localhost/URL-shortening-service/)
 
 Then you can insert a long url, as long as you want to make it shorter
 
@@ -69,7 +69,7 @@ NOTE: For simplicity I didn't parse some errors we can get back, neither I put t
 Post request with data
 
 ```
-$ curl 'http://localhost/URL-shortening-service/backend.php' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' --data 'url=https://testingreallylongislikethis.com'
+$ curl 'http://localhost/URL-shortening-service/backend.php' -H 'Content-Type: application/x-www-form-urlencoded; charset=UTF-8' --data 'url=http://testingreallylongislikethis.com'
 ```
 
 NOTE: use a different url in the curl each time you are testing only backend.
