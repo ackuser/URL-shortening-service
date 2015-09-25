@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `URLShortServices`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `URLShortServices` (
-  `idUss` int(11) NOT NULL,
+  `idUss` int(11) NOT NULL AUTO_INCREMENT,
   `url` varchar(45) DEFAULT NULL,
   `short` varchar(45) DEFAULT NULL,
   `ipaddress` varchar(45) DEFAULT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE `URLShortServices` (
   PRIMARY KEY (`idUss`),
   UNIQUE KEY `url_UNIQUE` (`url`),
   UNIQUE KEY `short_UNIQUE` (`short`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-25 11:07:36
+-- Dump completed on 2015-09-25 12:14:31

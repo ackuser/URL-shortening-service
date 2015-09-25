@@ -1,8 +1,5 @@
 <?php
-
-echo 'hola mundo';
 if (isset($_POST['url']) && !filter_var($_POST['url'], FILTER_VALIDATE_URL) === false) {
-  echo("$url is a valid URL");
   $servername = "localhost";
   $username = "root";
   $password = 'Pa$$w0rd';
@@ -16,12 +13,12 @@ if (isset($_POST['url']) && !filter_var($_POST['url'], FILTER_VALIDATE_URL) === 
   }
 
   $url = $_POST['url'];
-  $short = 'http://shortener/'. substr(sha1($url),0,6);
-
+  $short = 'http://short.ener/'. substr(sha1($url),0,6);
+  echo "URL " . $url . "\n";
   $ipaddress = $_SERVER['REMOTE_ADDR'];
   $datetime = date('Y-m-d H:i:s');
   $sql = "INSERT INTO `URLShortServices`(`url`, `short`, `ipaddress`, `datetime`)
-  VALUES ('".$sortcode."', '".$short."', '".$ipaddress."', '".$datetime."')";
+  VALUES ('".$url."', '".$short."', '".$ipaddress."', '".$datetime."')";
 
   if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
@@ -29,16 +26,18 @@ if (isset($_POST['url']) && !filter_var($_POST['url'], FILTER_VALIDATE_URL) === 
     echo "Error: " . $sql . "\n" . $conn->error;
   }
 
-  $sql = "SELECT * FROM ukbank";
+  $sql = "SELECT * FROM URLShortServices";
   $result = $conn->query($sql);
 
   if ($result->num_rows > 0) {
     // output data of each row
+    $return_arr = Array();
     while($row = $result->fetch_assoc()) {
-      print "<pre>";
-      print_r($row);
-      print "</pre>";
+      array_push($return_arr,$row);
     }
+      print "<pre>";
+      echo json_encode($return_arr);
+      print "</pre>";
   } else {
     echo "0 results";
   }
