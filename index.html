@@ -20,6 +20,7 @@
       $.post("backend.php", { url:url }, function(data) {
         //alert(data);
         $("#testResult").show();
+        $('#testResult tbody').remove();
         $.each(data, function(index, element) {
           var $row = $('<tr>'+
           '<td>'+element.url+'</td>'+
