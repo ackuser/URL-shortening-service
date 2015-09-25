@@ -57,9 +57,14 @@ $dbname = "URLss";
 
 Check it online
 
-go to (http://localhost/URL-shortening-service/)
+go to (http://localhost/URL-shortening-service)
 
 Then you can insert a long url, as long as you want to make it shorter
+
+See screenshot
+
+![alt tag](https://raw.github.com/ackuser/URL-shortening-service/blob/master/shortener.png)
+
 
 NOTE: For simplicity I didn't parse some errors we can get back, neither I put the configuration of the domain nor Database with more than one table (not in the requirements). I am also sending back to the client all the
 data from the db.
