@@ -1,4 +1,6 @@
 <?php
+
+echo 'hole mundo';
 if (isset($_POST['url']) && !filter_var($_POST['url'], FILTER_VALIDATE_URL) === false) {
      echo("$url is a valid URL");
   $servername = "localhost";

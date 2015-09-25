@@ -6,32 +6,44 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
-   <script type="text/javascript">
+  <script type="text/javascript">
 
-     $(document).ready(function(){
-        $("#testResult").hide();
-        })
+  $(document).ready(function(){
+    $("#testResult").hide();
+  })
 
-     function callListener() {
+  function callListener() {
+    var url = $("#url").val();
+    alert(url);
+    if(/^([a-z]([a-z]|\d|\+|-|\.)*):(\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?((\[(|(v[\da-f]{1,}\.(([a-z]|\d|-|\.|_|~)|[!\$&'\(\)\*\+,;=]|:)+))\])|((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=])*)(:\d*)?)(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*|(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)|((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)|((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)){0})(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i.test(url)) {
+      alert("valid url");
+      $.post( "backend.php", { url:url } );
+      $("#testResult").show();
+    } else {
+      alert("invalid url");
 
+    }
+  }
 
-
-   </script>
+  </script>
 
 </head>
 <body>
   <div class="container">
     <h2>URL Shortening Service</h2>
-      <div class="form-group">
+    <div class="form-group">
+      <form action="">
         <label for="url">URL:</label>
-        <input id='url' type="text" pattern="[0-9]*" minlength=6 maxlength=6 class="form-control" placeholder="Enter URL">
-      </div>
-      <button type="submit"  value='Test' onclick='callListener()' class="btn btn-default">Submit</button>
+        <input id='url' type="url" name="url" pattern="https?://.+" class="form-control" placeholder="Enter URL">
+        <button type="submit"  value='Test' onclick='callListener()' class="btn btn-default">Submit</button>
+      </form>
+    </div>
   </div>
   <div id='testResult'>
-     
+    LONG URL : <span id='resultCode'></span><br />
+    SHORT URL : <span  id='resultDescription'></span>
   </div>
-<script type="text/javascript">
-</script>
+  <script type="text/javascript">
+  </script>
 </body>
 </html>
